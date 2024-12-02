@@ -35,7 +35,7 @@ Adicione 3 ou mais screenshots do projeto em funcionamento.
 
 
 #### Ambiente
-Vá para a pasta do projeto Angular `cd ferrovias` e instale as dependências `npm i -g`.
+Vá para a pasta do projeto Angular `cd ferrovias` e instale as dependências `npm i`.
 
 
 #### Rodando..
