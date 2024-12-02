@@ -1,13 +1,11 @@
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
-import { NoComponent } from './no/no.component';
 import { getPixels } from 'ndarray-pixels';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NoComponent],
+  imports: [ ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -28,7 +26,9 @@ export class AppComponent {
   conteiner() {
     this.estilo = "max-width: "+ this.tamanhono * this.pixels.shape[0]+"px; ";
   }
-
+  estilono(r: any, g: any, b: any) {
+    return ("width: "+ this.tamanhono +"px; height: "+ this.tamanhono +"px; background-color: rgba("+ r +","+ g +","+ b +",1);" );
+  }
   populagrafo() {
     let cont = 0;
     for (let j = 0; j < this.pixels.shape[1]; j++) {
@@ -92,14 +92,14 @@ export class AppComponent {
       console.log("Largura da tela" + this.larguraTela);
       console.log("Altura da tela" + this.alturaTela);
       const bytesIn = await fetch(
-        '../assets/mapa.jpg'
+        '../assets/mapa_mini.jpg'
       )
         .then((res) => res.arrayBuffer())
         .then((arrayBuffer) => new Uint8Array(arrayBuffer));
 
       this.pixels = await getPixels(bytesIn, 'image/jpeg'); // Uint8Array -> ndarray
       console.log('got pixels', this.pixels);
-      this.tamanhono = this.larguraTela / this.pixels.shape[0];
+      this.tamanhono = Math.trunc(this.larguraTela / this.pixels.shape[0])-1;
       console.log(this.tamanhono);
       this.maximodenos =
       Math.trunc(this.pixels.shape[0]) * Math.trunc(this.pixels.shape[1]);

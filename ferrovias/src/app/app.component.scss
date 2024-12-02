@@ -7,3 +7,8 @@ app-no {
   flex-wrap: wrap;
   justify-content: center;
 }
+no{
+  &:hover {
+    background-color: rgb(255, 0, 0) !important;
+  }
+}

@@ -1,15 +1,12 @@
 <main class="conteiner" [attr.style]="estilo">
-@for (no of grafo; track no) {
-<app-no
-  id="{{ $index }}"
-  numerodono="{{ $index }}"
-  (click)="buscaEmLargura($index)"
-  tempo="100"
-  tamanho="{{ tamanhono }}"
-  r="{{ pixels.data[$index*4-3]}}"
-  g="{{ pixels.data[$index*4-2]}}"
-  b="{{ pixels.data[$index*4-1]}}"
-  a="1"
-></app-no>
-}
+  @for (no of grafo; track no) {
+
+  <div
+    class="no"
+    id="{{ $index }}"
+    [style]="estilono(pixels.data[$index * 4 - 3],pixels.data[$index * 4 - 2],pixels.data[$index * 4 - 1])"
+    title="Nó de numero{{ $index }}"
+  ></div>
+
+  }
 </main>
