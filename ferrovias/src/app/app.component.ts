@@ -2,7 +2,7 @@ import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 import { NoComponent } from './no/no.component';
-import { getPixels, savePixels } from 'ndarray-pixels';
+import { getPixels } from 'ndarray-pixels';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +20,8 @@ export class AppComponent {
   tamanhono = 20;
   nos: any;
   tempo = 10;
+  mapaTamanho: any;
+  pixels: any;
   grafo: any = [];
   populagrafo() {
     const colunas = Math.trunc(this.larguraTela / this.tamanhono);
@@ -40,7 +42,7 @@ export class AppComponent {
         if (i != colunas - 1) {
           this.grafo[cont].push(cont + 1);
         }
-        console.log(cont + ', ' + colunas + ', ' + linhas);
+        //console.log(cont + ', ' + colunas + ', ' + linhas);
         cont++;
       }
     }
@@ -58,13 +60,13 @@ export class AppComponent {
       if (!grafocopia[numerono].includes('explorado')) {
         lista = lista.concat(grafocopia[numerono]);
         grafocopia[numerono].push('explorado');
-        console.log(lista);
+        //console.log(lista);
 
         if (noagora) {
           noagora.children[0].classList.add('ligaonda');
         }
         setTimeout(() => busca(lista[0]), time);
-        console.log(numerono);
+        //console.log(numerono);
         lista = lista.filter((item) => item != numerono);
       } else {
         lista = lista.filter((item) => item != numerono);
@@ -84,23 +86,25 @@ export class AppComponent {
     if (isPlatformBrowser(this.platformId)) {
       this.larguraTela = window.innerWidth;
       this.alturaTela = window.innerHeight;
-      console.log(this.larguraTela);
-      console.log(this.alturaTela);
-    }
-    this.maximodenos =
-      Math.trunc(this.larguraTela) * Math.trunc(this.alturaTela);
-    this.nos = (this.tamanhono - 5) / this.maximodenos;
-    this.populagrafo();
-
-    if (isPlatformBrowser(this.platformId)) {
+      console.log("Largura da tela" + this.larguraTela);
+      console.log("Altura da tela" + this.alturaTela);
       const bytesIn = await fetch(
-        '../assets/icon_342.png'
+        '../assets/mapa.png'
       )
         .then((res) => res.arrayBuffer())
         .then((arrayBuffer) => new Uint8Array(arrayBuffer));
 
-      const pixels = await getPixels(bytesIn, 'image/png'); // Uint8Array -> ndarray
-      console.log('got pixels', pixels);
+      this.pixels = await getPixels(bytesIn, 'image/png'); // Uint8Array -> ndarray
+      console.log('got pixels', this.pixels);
+      this.tamanhono = this.larguraTela / this.pixels.shape[0];
+      console.log(this.tamanhono);
     }
+
+    this.maximodenos =
+    Math.trunc(this.larguraTela) * Math.trunc(this.alturaTela);
+
+    this.nos = (this.tamanhono - 5) / this.maximodenos;
+    this.populagrafo();
+
   }
 }

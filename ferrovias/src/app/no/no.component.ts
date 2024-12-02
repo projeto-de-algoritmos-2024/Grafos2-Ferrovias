@@ -15,11 +15,15 @@ export class NoComponent {
   @Input() numerodono:any;
   @Input() tempo:any;
   @Input() tamanho:any;
+  @Input() r:any;
+  @Input() g:any;
+  @Input() b:any;
+  @Input() a:any;
   texto: any;
   estilo:any;
 
   tamanhodono() {
-    this.estilo = "width: "+this.tamanho+"px; height: "+this.tamanho+"px;";
+    this.estilo = "width: "+this.tamanho+"px; height: "+this.tamanho+"px; background-color: rgba("+this.r+","+this.g+","+this.b+","+this.a+");";
   }
   nomeiaono(referencia: any) {
     this.texto = "Nó de numero "+referencia+".";
