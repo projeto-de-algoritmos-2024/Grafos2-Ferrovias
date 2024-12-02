@@ -94,13 +94,13 @@ export class AppComponent {
 
     if (isPlatformBrowser(this.platformId)) {
       const bytesIn = await fetch(
-        'https://cdn-icons-png.flaticon.com/256/10751/10751558.png'
+        '../assets/icon_342.png'
       )
         .then((res) => res.arrayBuffer())
         .then((arrayBuffer) => new Uint8Array(arrayBuffer));
 
       const pixels = await getPixels(bytesIn, 'image/png'); // Uint8Array -> ndarray
-      console.log('got pixels', pixels.shape.slice());
+      console.log('got pixels', pixels);
     }
   }
 }
