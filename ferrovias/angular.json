@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "onda": {
+    "ferrovias": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -67,10 +67,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "onda:build:production"
+              "buildTarget": "ferrovias:build:production"
             },
             "development": {
-              "buildTarget": "onda:build:development"
+              "buildTarget": "ferrovias:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -78,7 +78,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "onda:build"
+            "buildTarget": "ferrovias:build"
           }
         },
         "test": {
