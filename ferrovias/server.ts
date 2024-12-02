@@ -104,10 +104,6 @@ function haversine(
   return R * c; // Distância em quilômetros
 }
 
-// Exemplo de uso:
-const distance = haversine(-15.7942, -47.8822, -23.5505, -46.6333);
-console.log(`Distância: ${distance.toFixed(2)} km`);
-
 
 function calcularHipotenusa(catetoOposto: number, catetoAdjacente: number): number {
     return Math.sqrt(catetoOposto ** 2 + catetoAdjacente ** 2);
