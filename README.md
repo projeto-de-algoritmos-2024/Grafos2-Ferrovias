@@ -7,7 +7,7 @@
 |Matrícula | Aluno |
 | -- | -- |
 | 18/0128817  |  Pablo Santos Costa |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
+| 22/1031238  |  Víctor Augusto de Sousa Câmara |
 
 ## Sobre 
 Descreva os objetivos do seu projeto e como ele funciona. 
