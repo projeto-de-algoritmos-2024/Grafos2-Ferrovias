@@ -23,23 +23,27 @@ export class AppComponent {
   mapaTamanho: any;
   pixels: any;
   grafo: any = [];
+  estilo:any;
+
+  conteiner() {
+    this.estilo = "max-width: "+ this.tamanhono * this.pixels.shape[0]+"px; ";
+  }
+
   populagrafo() {
-    const colunas = Math.trunc(this.larguraTela / this.tamanhono);
-    const linhas = Math.trunc(this.alturaTela / this.tamanhono);
     let cont = 0;
-    for (let j = 0; j < linhas; j++) {
-      for (let i = 0; i < colunas; i++) {
+    for (let j = 0; j < this.pixels.shape[1]; j++) {
+      for (let i = 0; i < this.pixels.shape[0]; i++) {
         this.grafo[cont] = [];
         if (j != 0) {
-          this.grafo[cont].push(cont - colunas);
+          this.grafo[cont].push(cont - this.pixels.shape[0]);
         }
-        if (j != linhas - 1) {
-          this.grafo[cont].push(cont + colunas);
+        if (j != this.pixels.shape[1] - 1) {
+          this.grafo[cont].push(cont + this.pixels.shape[0]);
         }
         if (i != 0) {
           this.grafo[cont].push(cont - 1);
         }
-        if (i != colunas - 1) {
+        if (i != this.pixels.shape[0] - 1) {
           this.grafo[cont].push(cont + 1);
         }
         //console.log(cont + ', ' + colunas + ', ' + linhas);
@@ -54,7 +58,6 @@ export class AppComponent {
     console.log(grafocopia);
     console.log(no);
     let lista = [no];
-    let time = this.tempo;
     function busca(numerono: any) {
       let noagora = document.getElementById(numerono.toString());
       if (!grafocopia[numerono].includes('explorado')) {
@@ -65,7 +68,7 @@ export class AppComponent {
         if (noagora) {
           noagora.children[0].classList.add('ligaonda');
         }
-        setTimeout(() => busca(lista[0]), time);
+        busca(lista[0]);
         //console.log(numerono);
         lista = lista.filter((item) => item != numerono);
       } else {
@@ -89,22 +92,21 @@ export class AppComponent {
       console.log("Largura da tela" + this.larguraTela);
       console.log("Altura da tela" + this.alturaTela);
       const bytesIn = await fetch(
-        '../assets/mapa.png'
+        '../assets/mapa.jpg'
       )
         .then((res) => res.arrayBuffer())
         .then((arrayBuffer) => new Uint8Array(arrayBuffer));
 
-      this.pixels = await getPixels(bytesIn, 'image/png'); // Uint8Array -> ndarray
+      this.pixels = await getPixels(bytesIn, 'image/jpeg'); // Uint8Array -> ndarray
       console.log('got pixels', this.pixels);
       this.tamanhono = this.larguraTela / this.pixels.shape[0];
       console.log(this.tamanhono);
-    }
-
-    this.maximodenos =
-    Math.trunc(this.larguraTela) * Math.trunc(this.alturaTela);
-
+      this.maximodenos =
+      Math.trunc(this.pixels.shape[0]) * Math.trunc(this.pixels.shape[1]);
+      this.conteiner();
     this.nos = (this.tamanhono - 5) / this.maximodenos;
     this.populagrafo();
+    }
 
   }
 }

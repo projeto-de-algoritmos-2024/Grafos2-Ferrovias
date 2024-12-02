@@ -1,3 +1,4 @@
+<main class="conteiner" [attr.style]="estilo">
 @for (no of grafo; track no) {
 <app-no
   id="{{ $index }}"
@@ -8,6 +9,7 @@
   r="{{ pixels.data[$index*4-3]}}"
   g="{{ pixels.data[$index*4-2]}}"
   b="{{ pixels.data[$index*4-1]}}"
-  a="{{ pixels.data[$index*4]}}"
+  a="1"
 ></app-no>
 }
+</main>

@@ -1,18 +1,17 @@
 div{
-  background-color: #0054a9;
   &:hover {
-    background-color: azure;
+    background-color: rgb(255, 0, 0) !important;
   }
 }
 @keyframes coronda {
   0% {
-    background-color: #0054a9;
+    background-color: #192a61;
   }
   50% {
     background-color: #96f1ff;
   }
   100% {
-    background-color: #0054a9;
+    background-color: #192a61;
   }
 }
 .ligaonda {
